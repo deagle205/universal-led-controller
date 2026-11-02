@@ -12,9 +12,7 @@ Controller firmware (LED_Controller) is written and flashed to the controller on
 
 ## Key facts
 - Code: Documents\Arduino\UniversalLED (LED_Controller, LED_Node). led_protocol.h must be identical in both folders. FQBN esp32:esp32:esp32, upload with UploadSpeed=115200.
-- GitHub: https://github.com/deagle205/universal-led-controller (private). The repo root is DocumentsArduinoNIVERSALLED. DOCS/NOTES.MD AND THE DECK IN DOCS/ ARE COPIES, SO RECOPY THEM BEFORE COMMITTING.
-- CONTROLLER = COM13, MAC 48:9D:31:E3:53:D0.
-- Link: ESP-NOW on channel 1. The controller broadcasts DISCOVER every 2 s, nodes answer HELLO (name LED-XXXX from the MAC + current color), and the controller sends SET (rgb, bri, on). Up to 10 nodes; "All lights" sends to every node.
+- GitHub: https://github.com/deagle205/universal-led-controller (private). The repo root is Documents\Arduino\UniversalLED. docs/NOTES.md and the deck in docs/ are copies, so recopy them before committing.\n- Controller = COM13, MAC 48:9D:31:E3:53:D0.\n- Link: ESP-NOW on channel 1. The controller broadcasts DISCOVER every 2 s, nodes answer HELLO (name LED-XXXX from the MAC + current color), and the controller sends SET (rgb, bri, on). Up to 10 nodes; "All lights" sends to every node.
 - Controller UI: Home (Light, Presets, Custom color HSV, Saved colors, Brightness, Power). Press = select, hold 600 ms = back/cancel. Presets and saved colors preview live. There are 12 saved slots, stored in NVS ("ledctl"/"slots").
 - Node: R/G/B PWM with gamma 2.2. At boot it flashes R, G, B, then restores its last color from NVS.
 - Gotcha: in core 3.3.12, WiFi.macAddress() read all zeros right after WiFi.mode() on the node. Use esp_read_mac(mac, ESP_MAC_WIFI_STA).
